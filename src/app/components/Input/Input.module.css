@@ -1,0 +1,13 @@
+@reference "tailwindcss";
+
+.container {
+  @apply flex gap-2 items-center border border-solid p-4 border-[var(--color-primary)] rounded-lg overflow-hidden w-full;
+}
+
+.field {
+  @apply outline-none flex-1;
+}
+
+.icon {
+  @apply text-neutral-400;
+}
