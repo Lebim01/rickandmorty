@@ -1,11 +1,15 @@
+"use client";
 import { FaSearch, FaUser } from "react-icons/fa";
 import Input from "./components/Input/Input";
 import Image from "next/image";
 import Carousel from "./components/HorizontalCarousel/HorizontalCarousel";
-import characters from "./characters.mock.json";
 import CharacterItem from "./components/CharacterItem/CharacterItem";
+import { selectCharacters } from "./store/characters/characters.selectors";
+import { useAppSelector } from "./store/hooks";
 
 export default function Home() {
+  const characters = useAppSelector(selectCharacters);
+
   return (
     <div className="font-sans min-h-screen p-8">
       <main className="flex flex-col gap-[32px]">

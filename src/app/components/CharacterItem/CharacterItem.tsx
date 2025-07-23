@@ -2,6 +2,7 @@
 import { FC } from "react";
 import styles from "./Character.module.css";
 import { FaHeart } from "react-icons/fa";
+import { Character } from "rickmortyapi";
 
 type Props = {
   character: Character;

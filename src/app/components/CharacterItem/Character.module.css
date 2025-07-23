@@ -2,10 +2,6 @@
 
 .container {
   @apply rounded-xl min-w-[200px] flex flex-col items-center border border-solid border-transparent p-4 bg-[var(--color-card)] gap-4 aspect-square;
-
-  &.active {
-    @apply border-[var(--color-primary)];
-  }
 }
 
 .containerActive {
@@ -13,7 +9,7 @@
 }
 
 .name {
-  @apply uppercase font-medium;
+  @apply uppercase font-medium line-clamp-1;
 }
 
 .image {
