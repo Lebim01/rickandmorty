@@ -1,7 +1,7 @@
 @reference "tailwindcss";
 
 .container {
-  @apply w-full h-full relative aspect-square rounded-xl overflow-hidden;
+  @apply w-full h-full relative aspect-square rounded-xl overflow-hidden z-10;
 }
 
 .image {

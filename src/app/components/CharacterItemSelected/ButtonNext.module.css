@@ -1,0 +1,5 @@
+@reference "tailwindcss";
+
+.button {
+  @apply absolute right-0 top-1/2 -translate-y-1/2 translate-x-full aspect-square flex items-center justify-center;
+}

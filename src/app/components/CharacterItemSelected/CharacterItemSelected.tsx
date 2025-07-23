@@ -22,7 +22,6 @@ const PairData: FC<{
 };
 
 const CharacterItemSelected: FC<Props> = ({ character }) => {
-  console.log(character);
   if (!character) return null;
   return (
     <div className={styles.container}>

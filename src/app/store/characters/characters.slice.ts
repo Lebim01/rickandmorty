@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { CharactersState } from "./characters.types";
 import { Character } from "rickmortyapi";
+import { selectorCharacters } from "./characters.selectors";
 
 const initialState: CharactersState = {
   items: [],
@@ -40,6 +41,7 @@ const charactersSlice = createSlice({
     },
     resetSelectedCharacter(state) {
       state.selectedCharacter = null;
+      state.selectedCharacterIndex = null;
     },
 
     // Feat: filter by name
@@ -47,6 +49,8 @@ const charactersSlice = createSlice({
       state.filterName = action.payload;
       state.loading = true;
       state.error = null;
+      state.selectedCharacter = null;
+      state.selectedCharacterIndex = null;
     },
     searchSucceeded(state, action: PayloadAction<Character[]>) {
       state.loading = false;
@@ -70,6 +74,29 @@ const charactersSlice = createSlice({
     removeFavorite(state, action: PayloadAction<number>) {
       state.favorites = state.favorites.filter((c) => c.id != action.payload);
     },
+
+    // Feat: navigation arrows
+    nextCharacter(state) {
+      if (state.selectedCharacterIndex != null) {
+        const characters = selectorCharacters({ characters: state });
+        const newindex = state.selectedCharacterIndex + 1;
+        if (characters.length > newindex) {
+          state.selectedCharacter = characters[newindex];
+          state.selectedCharacterIndex = newindex;
+        }
+      }
+    },
+    prevCharacter(state) {
+      if (
+        state.selectedCharacterIndex != null &&
+        state.selectedCharacterIndex > 0
+      ) {
+        const newindex = state.selectedCharacterIndex - 1;
+        const characters = selectorCharacters({ characters: state });
+        state.selectedCharacter = characters[newindex];
+        state.selectedCharacterIndex = newindex;
+      }
+    },
   },
 });
 
@@ -84,6 +111,8 @@ export const {
   searchFailed,
   setFavorite,
   removeFavorite,
+  nextCharacter,
+  prevCharacter,
 } = charactersSlice.actions;
 
 export default charactersSlice.reducer;

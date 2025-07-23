@@ -20,6 +20,8 @@ import { useDebounce } from "./hooks/useDebounce";
 import { useEffect, useState } from "react";
 import CharacterSkeleton from "./components/CharacterItem/CharacterSkeleton";
 import FavoritesButton from "./components/FavoritesButton/FavoritesButton";
+import ButtonNext from "./components/CharacterItemSelected/ButtonNext";
+import ButtonPrev from "./components/CharacterItemSelected/ButtonPrev";
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -41,7 +43,7 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(searchRequested(inputFilter));
-  }, [inputFilter]);
+  }, [dispatch, inputFilter]);
 
   return (
     <div className="font-sans min-h-screen p-8">
@@ -80,7 +82,13 @@ export default function Home() {
           }
         />
 
-        <CharacterItemSelected character={selectedCharacter} />
+        {selectedCharacter && (
+          <div className="relative mx-4 md:mx-0">
+            <ButtonPrev />
+            <CharacterItemSelected character={selectedCharacter} />
+            <ButtonNext />
+          </div>
+        )}
 
         <FavoritesButton />
       </main>
