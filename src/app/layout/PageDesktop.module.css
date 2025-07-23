@@ -13,9 +13,9 @@
 }
 
 .gridContainer {
-  @apply max-h-[40vh] overflow-auto;
+  @apply max-h-[40vh] overflow-auto flex-1;
 }
 
 .buttonsContainer {
-  @apply flex flex-col justify-between;
+  @apply flex flex-col justify-between gap-4;
 }

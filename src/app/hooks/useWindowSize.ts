@@ -1,4 +1,3 @@
-// useWindowSize.ts -------------------------------------------------
 import { useEffect, useState } from "react";
 
 interface WindowSize {
@@ -7,14 +6,13 @@ interface WindowSize {
 }
 
 export function useWindowSize(debounceMs = 0): WindowSize {
-  // 1️⃣ Estado inicial compatible con SSR
   const [size, setSize] = useState<WindowSize>({
     width: typeof window === "undefined" ? 0 : window.innerWidth,
     height: typeof window === "undefined" ? 0 : window.innerHeight,
   });
 
   useEffect(() => {
-    if (typeof window === "undefined") return; // SSR safeguard
+    if (typeof window === "undefined") return;
 
     let timeoutId: number | undefined;
 
