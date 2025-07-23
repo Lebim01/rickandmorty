@@ -1,0 +1,5 @@
+@reference "tailwindcss";
+
+.container {
+  @apply flex gap-4 items-center overflow-x-auto overflow-y-hidden pb-4;
+}

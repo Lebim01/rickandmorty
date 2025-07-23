@@ -1,0 +1,25 @@
+@reference "tailwindcss";
+
+.container {
+  @apply rounded-xl min-w-[200px] flex flex-col items-center border border-solid border-transparent p-4 bg-[var(--color-card)] gap-4 aspect-square;
+
+  &.active {
+    @apply border-[var(--color-primary)];
+  }
+}
+
+.containerActive {
+  @apply border-[var(--color-primary)];
+}
+
+.name {
+  @apply uppercase font-medium;
+}
+
+.image {
+  @apply aspect-square object-cover;
+}
+
+.actionContainer {
+  @apply flex items-center gap-2 text-xl;
+}

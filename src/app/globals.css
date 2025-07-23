@@ -12,7 +12,8 @@
   --font-mono: var(--font-geist-mono);
 
   --color-primary: #88e23b;
-  --color-secondary: ##a6cccc;
+  --color-secondary: #a6cccc;
+  --color-card: #212121;
 }
 
 body {

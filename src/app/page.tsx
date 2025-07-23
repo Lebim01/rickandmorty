@@ -1,6 +1,9 @@
 import { FaSearch, FaUser } from "react-icons/fa";
 import Input from "./components/Input/Input";
 import Image from "next/image";
+import Carousel from "./components/HorizontalCarousel/HorizontalCarousel";
+import characters from "./characters.mock.json";
+import CharacterItem from "./components/CharacterItem/CharacterItem";
 
 export default function Home() {
   return (
@@ -20,6 +23,12 @@ export default function Home() {
             placeholder: "Find your character...",
           }}
           iconRight={<FaUser />}
+        />
+
+        <Carousel
+          items={characters.map((c, index) => (
+            <CharacterItem character={c} key={index} />
+          ))}
         />
       </main>
     </div>
