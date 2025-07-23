@@ -5,6 +5,8 @@ import { FaHeart } from "react-icons/fa";
 import { Character } from "rickmortyapi";
 import ImageSkeleton from "./ImageSkeleton";
 import clsx from "clsx";
+import { useAppSelector } from "@/app/store/hooks";
+import { selectorSelectedCharacter } from "@/app/store/characters/characters.selectors";
 
 type Props = {
   character: Character;
@@ -16,9 +18,15 @@ const CharacterItem: FC<Props> = ({ character, indexNumber, onClick }) => {
   const [status, setStatus] = useState<"loading" | "loaded" | "error">(
     "loading"
   );
+
+  const selectedCharacter = useAppSelector(selectorSelectedCharacter);
+
   return (
     <div
-      className={styles.container}
+      className={clsx(
+        styles.container,
+        selectedCharacter?.id == character.id && styles.containerActive
+      )}
       onClick={() => onClick(character, indexNumber)}
     >
       <span className={styles.name}>{character.name}</span>

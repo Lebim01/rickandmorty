@@ -1,7 +1,7 @@
 @reference "tailwindcss";
 
 .container {
-  @apply rounded-xl min-w-[200px] flex flex-col items-center border border-solid border-transparent p-4 bg-[var(--color-card)] gap-4 aspect-square hover:bg-[var(--color-card-hover)] active:bg-[var(--color-card-hover)] hover:cursor-pointer;
+  @apply rounded-xl min-w-[200px] flex flex-col items-center border-[2px] border-solid border-transparent p-4 bg-[var(--color-card)] gap-4 aspect-square hover:bg-[var(--color-card-hover)] active:bg-[var(--color-card-hover)] hover:cursor-pointer;
 }
 
 .containerActive {
