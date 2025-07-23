@@ -20,6 +20,7 @@ Mejoras que haria si tuviese mas tiempo:
 - Loading screen user friendly 
 - Paginación de todos los personajes, el api tiene una limitación de cantidad de items de la funcion getAll, seria ideal implementar una paginacion para poder visualizar todas las paginas disponibles
 - Filter UX, se puede mejorar la experiencia de interacción con el filtro si se agregan animaciones como desvanecimiento
+- Para agregar el soporte de SSR y evitar que la primera carga de la pantalla venga vacia, se pueden obtener las cabeceras del browser para saber si iniciar la carga desde el layout de mobile o de desktop antes de que llegue al cliente a obtener las dimensiones del dispositivo
 
 
 Bug que me tope y como lo solucione:
