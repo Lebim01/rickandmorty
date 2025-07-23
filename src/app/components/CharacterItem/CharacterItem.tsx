@@ -7,7 +7,7 @@ import ImageSkeleton from "./ImageSkeleton";
 import clsx from "clsx";
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import {
-  selectorIsFavorite,
+  selectorFavorite,
   selectorSelectedCharacter,
 } from "@/app/store/characters/characters.selectors";
 import {
@@ -28,13 +28,13 @@ const CharacterItem: FC<Props> = ({ character, indexNumber, onClick }) => {
 
   const dispatch = useAppDispatch();
   const selectedCharacter = useAppSelector(selectorSelectedCharacter);
-  const isFav = useAppSelector(selectorIsFavorite(character.id));
+  const isFav = useAppSelector(selectorFavorite(character.id));
 
   const toggleFav = () => {
     if (isFav) {
       dispatch(removeFavorite(character.id));
     } else {
-      dispatch(setFavorite(character.id));
+      dispatch(setFavorite(character));
     }
   };
 

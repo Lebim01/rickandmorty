@@ -8,5 +8,5 @@ export interface CharactersState {
   selectedCharacterIndex: null | number;
   filterName: string | null;
   filteredItems: Character[];
-  favorites: number[];
+  favorites: Character[];
 }

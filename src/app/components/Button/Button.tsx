@@ -1,12 +1,23 @@
-import { FC, ReactNode } from "react";
+import { forwardRef, ForwardedRef, ButtonHTMLAttributes } from "react";
 import styles from "./Button.module.css";
+import clsx from "clsx";
 
-type Props = {
-  children: ReactNode;
-};
+const Button = forwardRef<
+  HTMLButtonElement,
+  ButtonHTMLAttributes<HTMLButtonElement>
+>(
+  (
+    { children, className, ...rest }: ButtonHTMLAttributes<HTMLButtonElement>,
+    ref: ForwardedRef<HTMLButtonElement>
+  ) => {
+    return (
+      <button ref={ref} className={clsx(styles.container, className)} {...rest}>
+        {children}
+      </button>
+    );
+  }
+);
 
-const Button: FC<Props> = ({ children }) => {
-  return <button className={styles.container}>{children}</button>;
-};
+Button.displayName = "Button";
 
 export default Button;

@@ -1,0 +1,21 @@
+@reference "tailwindcss";
+
+.popperContainer {
+  @apply bg-[#494949] py-3 px-1 flex flex-col rounded-xl gap-2 min-w-[250px] max-w-[250px] text-[18px] max-h-[300px] overflow-auto;
+}
+
+.emptyText {
+  @apply text-neutral-400 block text-center;
+}
+
+.favoriteItem {
+  @apply bg-[#9C9C9C] flex justify-between px-4 py-1;
+}
+
+.favoriteItem>span {
+  @apply line-clamp-1;
+}
+
+.favoriteItem>button {
+  @apply hover:text-red-500 active:text-red-500;
+}

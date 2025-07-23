@@ -16,10 +16,10 @@ import {
   searchRequested,
   selectCharacter,
 } from "./store/characters/characters.slice";
-import Button from "./components/Button/Button";
 import { useDebounce } from "./hooks/useDebounce";
 import { useEffect, useState } from "react";
 import CharacterSkeleton from "./components/CharacterItem/CharacterSkeleton";
+import FavoritesButton from "./components/FavoritesButton/FavoritesButton";
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -82,7 +82,7 @@ export default function Home() {
 
         <CharacterItemSelected character={selectedCharacter} />
 
-        <Button>FAVS</Button>
+        <FavoritesButton />
       </main>
     </div>
   );
