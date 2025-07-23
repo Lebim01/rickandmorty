@@ -1,4 +1,4 @@
-import styles from "./CharacterSkeleton.module.css";
+import styles from "./Skeleton.module.css";
 
 const CharacterSkeleton = () => {
   return (

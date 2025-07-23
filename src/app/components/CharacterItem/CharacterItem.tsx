@@ -1,8 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import { FC } from "react";
+import { FC, useState } from "react";
 import styles from "./Character.module.css";
 import { FaHeart } from "react-icons/fa";
 import { Character } from "rickmortyapi";
+import ImageSkeleton from "./ImageSkeleton";
+import clsx from "clsx";
 
 type Props = {
   character: Character;
@@ -11,10 +13,23 @@ type Props = {
 };
 
 const CharacterItem: FC<Props> = ({ character, indexNumber, onClick }) => {
+  const [status, setStatus] = useState<"loading" | "loaded" | "error">(
+    "loading"
+  );
   return (
-    <div className={styles.container} onClick={() => onClick(character, indexNumber)}>
+    <div
+      className={styles.container}
+      onClick={() => onClick(character, indexNumber)}
+    >
       <span className={styles.name}>{character.name}</span>
-      <img className={styles.image} src={character.image} alt="character image" />
+      {status != "loaded" && <ImageSkeleton />}
+      <img
+        className={clsx(styles.image, status != "loaded" && "hidden")}
+        src={character.image}
+        alt="character image"
+        onLoad={() => setStatus("loaded")}
+        onError={() => setStatus("error")}
+      />
       <div className={styles.actionContainer}>
         <FaHeart />
         <span>Like</span>
