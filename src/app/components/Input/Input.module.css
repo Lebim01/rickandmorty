@@ -2,6 +2,7 @@
 
 .container {
   @apply flex gap-2 items-center border border-solid p-4 border-[var(--color-primary)] rounded-lg overflow-hidden w-full;
+  @apply md:text-sm md:p-2;
 }
 
 .field {

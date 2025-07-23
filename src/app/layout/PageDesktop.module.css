@@ -1,0 +1,21 @@
+@reference "tailwindcss";
+
+.screen {
+  @apply font-sans min-h-screen p-8;
+}
+
+.main {
+  @apply flex flex-col gap-[32px] max-w-[900px] mx-auto;
+}
+
+.galleryContainer {
+  @apply grid grid-cols-2 bg-[#1C1C1C] w-full border border-solid border-black rounded-xl;
+}
+
+.gridContainer {
+  @apply max-h-[40vh] overflow-auto;
+}
+
+.buttonsContainer {
+  @apply flex flex-col justify-between;
+}

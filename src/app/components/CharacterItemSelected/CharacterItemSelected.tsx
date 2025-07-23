@@ -8,6 +8,11 @@ type Props = {
   character: null | Character;
 };
 
+const statusText: Record<string, string> = {
+  Alive: "LIVE",
+  Dead: "DEAD",
+};
+
 const PairData: FC<{
   title: ReactNode;
   content: ReactNode;
@@ -22,7 +27,7 @@ const PairData: FC<{
 };
 
 const CharacterItemSelected: FC<Props> = ({ character }) => {
-  if (!character) return null;
+  if (!character) return <div></div>;
   return (
     <div className={styles.container}>
       <img
@@ -40,7 +45,9 @@ const CharacterItemSelected: FC<Props> = ({ character }) => {
             }
             alt="elipse"
           />
-          <span className={styles.liveText}>{character.status}</span>
+          <span className={styles.liveText}>
+            {statusText[character.status]}
+          </span>
         </div>
       )}
       <div className={styles.detailsContainer}>

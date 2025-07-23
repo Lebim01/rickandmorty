@@ -1,0 +1,13 @@
+@reference "tailwindcss";
+
+.screen {
+  @apply font-sans min-h-screen p-8;
+}
+
+.main {
+  @apply flex flex-col gap-8;
+}
+
+.itemSelectedContainer {
+  @apply mx-[20px] relative;
+}
