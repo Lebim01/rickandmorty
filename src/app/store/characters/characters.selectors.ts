@@ -2,8 +2,10 @@ import { RootState } from "../rootReducer";
 
 export const selectorCharactersState = (state: RootState) => state.characters;
 
-export const selectorCharacters = (state: RootState) =>
-  selectorCharactersState(state).items;
+export const selectorCharacters = (state: RootState) => {
+  const { filterName, items, filteredItems } = selectorCharactersState(state);
+  return filterName ? filteredItems : items;
+};
 export const selectorCharactersLoading = (state: RootState) =>
   selectorCharactersState(state).loading;
 export const selectorCharactersError = (state: RootState) =>

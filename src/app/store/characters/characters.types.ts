@@ -6,4 +6,6 @@ export interface CharactersState {
   error: string | null;
   selectedCharacter: null | Character;
   selectedCharacterIndex: null | number;
+  filterName: string | null;
+  filteredItems: Character[];
 }

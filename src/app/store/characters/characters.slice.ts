@@ -8,6 +8,8 @@ const initialState: CharactersState = {
   error: null,
   selectedCharacter: null,
   selectedCharacterIndex: null,
+  filterName: null,
+  filteredItems: [],
 };
 
 const charactersSlice = createSlice({
@@ -26,6 +28,8 @@ const charactersSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+
+    // Feat: select character
     selectCharacter(
       state,
       action: PayloadAction<{ character: Character; index: number }>
@@ -36,6 +40,22 @@ const charactersSlice = createSlice({
     resetSelectedCharacter(state) {
       state.selectedCharacter = null;
     },
+
+    // Feat: filter by name
+    searchRequested(state, action: PayloadAction<string>) {
+      state.filterName = action.payload;
+      state.loading = true;
+      state.error = null;
+    },
+    searchSucceeded(state, action: PayloadAction<Character[]>) {
+      state.loading = false;
+      state.filteredItems = action.payload;
+    },
+    searchFailed(state, action: PayloadAction<string>) {
+      state.loading = false;
+      state.filteredItems = [];
+      state.error = action.payload;
+    },
   },
 });
 
@@ -45,6 +65,9 @@ export const {
   getAllFailed,
   selectCharacter,
   resetSelectedCharacter,
+  searchRequested,
+  searchSucceeded,
+  searchFailed,
 } = charactersSlice.actions;
 
 export default charactersSlice.reducer;

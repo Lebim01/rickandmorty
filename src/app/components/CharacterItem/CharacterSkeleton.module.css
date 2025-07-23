@@ -1,0 +1,11 @@
+@reference "tailwindcss";
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(1.05); }
+}
+
+.skeleton {
+  @apply rounded-xl bg-[var(--color-skeleton)] aspect-square;
+  animation: pulse 1s ease-in-out infinite;
+}

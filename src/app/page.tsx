@@ -6,18 +6,29 @@ import Carousel from "./components/HorizontalCarousel/HorizontalCarousel";
 import CharacterItem from "./components/CharacterItem/CharacterItem";
 import {
   selectorCharacters,
+  selectorCharactersLoading,
   selectorSelectedCharacter,
 } from "./store/characters/characters.selectors";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
 import CharacterItemSelected from "./components/CharacterItemSelected/CharacterItemSelected";
 import { Character } from "rickmortyapi";
-import { selectCharacter } from "./store/characters/characters.slice";
+import {
+  searchRequested,
+  selectCharacter,
+} from "./store/characters/characters.slice";
 import Button from "./components/Button/Button";
+import { useDebounce } from "./hooks/useDebounce";
+import { useEffect, useState } from "react";
+import CharacterSkeleton from "./components/CharacterItem/CharacterSkeleton";
 
 export default function Home() {
   const dispatch = useAppDispatch();
   const characters = useAppSelector(selectorCharacters);
   const selectedCharacter = useAppSelector(selectorSelectedCharacter);
+  const charactersLoading = useAppSelector(selectorCharactersLoading);
+
+  const [inputValue, setInputValue] = useState("");
+  const inputFilter = useDebounce(inputValue);
 
   const setSelectedCharacter = (character: Character, index: number) => {
     dispatch(
@@ -27,6 +38,10 @@ export default function Home() {
       })
     );
   };
+
+  useEffect(() => {
+    dispatch(searchRequested(inputFilter));
+  }, [inputFilter]);
 
   return (
     <div className="font-sans min-h-screen p-8">
@@ -43,19 +58,26 @@ export default function Home() {
           iconLeft={<FaSearch />}
           inputProps={{
             placeholder: "Find your character...",
+            onChange: (e) => setInputValue(e.target.value),
           }}
           iconRight={<FaUser />}
         />
 
         <Carousel
-          items={characters.map((c, index) => (
-            <CharacterItem
-              character={c}
-              key={index}
-              indexNumber={index}
-              onClick={setSelectedCharacter}
-            />
-          ))}
+          items={
+            charactersLoading
+              ? new Array(4)
+                  .fill(1)
+                  .map((_, index) => <CharacterSkeleton key={index} />)
+              : characters.map((c, index) => (
+                  <CharacterItem
+                    character={c}
+                    key={c.id}
+                    indexNumber={index}
+                    onClick={setSelectedCharacter}
+                  />
+                ))
+          }
         />
 
         <CharacterItemSelected character={selectedCharacter} />
