@@ -12,6 +12,7 @@ import { useAppDispatch, useAppSelector } from "./store/hooks";
 import CharacterItemSelected from "./components/CharacterItemSelected/CharacterItemSelected";
 import { Character } from "rickmortyapi";
 import { selectCharacter } from "./store/characters/characters.slice";
+import Button from "./components/Button/Button";
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -58,6 +59,8 @@ export default function Home() {
         />
 
         <CharacterItemSelected character={selectedCharacter} />
+
+        <Button>FAVS</Button>
       </main>
     </div>
   );

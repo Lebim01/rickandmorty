@@ -1,0 +1,5 @@
+@reference "tailwindcss";
+
+.container {
+  @apply bg-[#5B5454] rounded-[10px] h-[40px] hover:text-[var(--color-primary)] active:text-[var(--color-primary)] active:bg-[#5B5454B2];
+}
