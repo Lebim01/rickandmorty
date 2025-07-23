@@ -4,11 +4,28 @@ import Input from "./components/Input/Input";
 import Image from "next/image";
 import Carousel from "./components/HorizontalCarousel/HorizontalCarousel";
 import CharacterItem from "./components/CharacterItem/CharacterItem";
-import { selectCharacters } from "./store/characters/characters.selectors";
-import { useAppSelector } from "./store/hooks";
+import {
+  selectorCharacters,
+  selectorSelectedCharacter,
+} from "./store/characters/characters.selectors";
+import { useAppDispatch, useAppSelector } from "./store/hooks";
+import CharacterItemSelected from "./components/CharacterItemSelected/CharacterItemSelected";
+import { Character } from "rickmortyapi";
+import { selectCharacter } from "./store/characters/characters.slice";
 
 export default function Home() {
-  const characters = useAppSelector(selectCharacters);
+  const dispatch = useAppDispatch();
+  const characters = useAppSelector(selectorCharacters);
+  const selectedCharacter = useAppSelector(selectorSelectedCharacter);
+
+  const setSelectedCharacter = (character: Character, index: number) => {
+    dispatch(
+      selectCharacter({
+        character,
+        index,
+      })
+    );
+  };
 
   return (
     <div className="font-sans min-h-screen p-8">
@@ -31,9 +48,16 @@ export default function Home() {
 
         <Carousel
           items={characters.map((c, index) => (
-            <CharacterItem character={c} key={index} />
+            <CharacterItem
+              character={c}
+              key={index}
+              indexNumber={index}
+              onClick={setSelectedCharacter}
+            />
           ))}
         />
+
+        <CharacterItemSelected character={selectedCharacter} />
       </main>
     </div>
   );

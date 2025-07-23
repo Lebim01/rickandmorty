@@ -6,11 +6,13 @@ import { Character } from "rickmortyapi";
 
 type Props = {
   character: Character;
+  indexNumber: number;
+  onClick: (character: Character, index: number) => void;
 };
 
-const CharacterItem: FC<Props> = ({ character }) => {
+const CharacterItem: FC<Props> = ({ character, indexNumber, onClick }) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={() => onClick(character, indexNumber)}>
       <span className={styles.name}>{character.name}</span>
       <img className={styles.image} src={character.image} alt="character image" />
       <div className={styles.actionContainer}>

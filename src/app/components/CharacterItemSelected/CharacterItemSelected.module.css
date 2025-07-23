@@ -1,0 +1,37 @@
+@reference "tailwindcss";
+
+.container {
+  @apply w-full h-full relative aspect-square rounded-xl overflow-hidden;
+}
+
+.image {
+  @apply w-full h-full object-cover;
+}
+
+.detailsContainer {
+  @apply absolute bottom-0 left-0 bg-black/70 w-full p-4 flex flex-col;
+}
+
+.pairContainer {
+  @apply flex flex-col text-[11px];
+}
+
+.pairTitle {
+  @apply text-[var(--color-primary)];
+}
+
+.pairsGrid {
+  @apply grid grid-cols-4 gap-4 mt-2;
+}
+
+.bigText {
+  @apply text-[16px] md:text-[19px];
+}
+
+.liveContainer {
+  @apply absolute top-4 left-4 bg-[#1A1A1A] p-2 rounded-xl flex items-center gap-2;
+}
+
+.liveText {
+  @apply uppercase;
+}

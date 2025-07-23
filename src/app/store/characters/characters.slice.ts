@@ -6,6 +6,8 @@ const initialState: CharactersState = {
   items: [],
   loading: false,
   error: null,
+  selectedCharacter: null,
+  selectedCharacterIndex: null,
 };
 
 const charactersSlice = createSlice({
@@ -24,10 +26,25 @@ const charactersSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    selectCharacter(
+      state,
+      action: PayloadAction<{ character: Character; index: number }>
+    ) {
+      state.selectedCharacter = action.payload.character;
+      state.selectedCharacterIndex = action.payload.index;
+    },
+    resetSelectedCharacter(state) {
+      state.selectedCharacter = null;
+    },
   },
 });
 
-export const { getAllRequested, getAllSucceeded, getAllFailed } =
-  charactersSlice.actions;
+export const {
+  getAllRequested,
+  getAllSucceeded,
+  getAllFailed,
+  selectCharacter,
+  resetSelectedCharacter,
+} = charactersSlice.actions;
 
 export default charactersSlice.reducer;

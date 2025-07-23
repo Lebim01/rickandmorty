@@ -14,6 +14,7 @@
   --color-primary: #88e23b;
   --color-secondary: #a6cccc;
   --color-card: #212121;
+  --color-card-hover: #4F4F4FCC;
 }
 
 body {

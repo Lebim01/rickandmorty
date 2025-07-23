@@ -4,4 +4,6 @@ export interface CharactersState {
   items: Character[];
   loading: boolean;
   error: string | null;
+  selectedCharacter: null | Character;
+  selectedCharacterIndex: null | number;
 }
