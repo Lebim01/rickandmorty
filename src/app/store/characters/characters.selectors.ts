@@ -13,3 +13,6 @@ export const selectorCharactersError = (state: RootState) =>
 
 export const selectorSelectedCharacter = (state: RootState) =>
   selectorCharactersState(state).selectedCharacter;
+
+export const selectorIsFavorite = (id: number) => (state: RootState) =>
+  selectorCharactersState(state).favorites.includes(id);

@@ -10,6 +10,7 @@ const initialState: CharactersState = {
   selectedCharacterIndex: null,
   filterName: null,
   filteredItems: [],
+  favorites: [], // id[]
 };
 
 const charactersSlice = createSlice({
@@ -56,6 +57,20 @@ const charactersSlice = createSlice({
       state.filteredItems = [];
       state.error = action.payload;
     },
+
+    // Feat: favorites
+    // dispatch(setFavorite(characterId))
+    setFavorite(state, action: PayloadAction<number>) {
+      if (action.payload && !state.favorites.includes(action.payload)) {
+        state.favorites.push(action.payload);
+      }
+    },
+    // dispatch(removeFavorite(characterId))
+    removeFavorite(state, action: PayloadAction<number>) {
+      if (state.favorites.includes(action.payload)) {
+        state.favorites = state.favorites.filter((id) => id != action.payload);
+      }
+    },
   },
 });
 
@@ -68,6 +83,8 @@ export const {
   searchRequested,
   searchSucceeded,
   searchFailed,
+  setFavorite,
+  removeFavorite,
 } = charactersSlice.actions;
 
 export default charactersSlice.reducer;

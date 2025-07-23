@@ -19,3 +19,7 @@
 .actionContainer {
   @apply flex items-center gap-2 text-xl;
 }
+
+.actionIconActive {
+  @apply text-red-500;
+}

@@ -1,12 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
 import { FC, useState } from "react";
 import styles from "./Character.module.css";
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { Character } from "rickmortyapi";
 import ImageSkeleton from "./ImageSkeleton";
 import clsx from "clsx";
-import { useAppSelector } from "@/app/store/hooks";
-import { selectorSelectedCharacter } from "@/app/store/characters/characters.selectors";
+import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
+import {
+  selectorIsFavorite,
+  selectorSelectedCharacter,
+} from "@/app/store/characters/characters.selectors";
+import {
+  removeFavorite,
+  setFavorite,
+} from "@/app/store/characters/characters.slice";
 
 type Props = {
   character: Character;
@@ -19,7 +26,17 @@ const CharacterItem: FC<Props> = ({ character, indexNumber, onClick }) => {
     "loading"
   );
 
+  const dispatch = useAppDispatch();
   const selectedCharacter = useAppSelector(selectorSelectedCharacter);
+  const isFav = useAppSelector(selectorIsFavorite(character.id));
+
+  const toggleFav = () => {
+    if (isFav) {
+      dispatch(removeFavorite(character.id));
+    } else {
+      dispatch(setFavorite(character.id));
+    }
+  };
 
   return (
     <div
@@ -38,8 +55,17 @@ const CharacterItem: FC<Props> = ({ character, indexNumber, onClick }) => {
         onLoad={() => setStatus("loaded")}
         onError={() => setStatus("error")}
       />
-      <div className={styles.actionContainer}>
-        <FaHeart />
+      <div
+        className={clsx(styles.actionContainer, "group")}
+        onClick={toggleFav}
+      >
+        {isFav ? (
+          <FaHeart className={clsx(styles.actionIconActive)} />
+        ) : (
+          <FaRegHeart
+            className={clsx(styles.actionIcon, "group-hover:text-red-500")}
+          />
+        )}
         <span>Like</span>
       </div>
     </div>
