@@ -56,13 +56,18 @@ const CharacterItem: FC<Props> = ({ character, indexNumber, onClick }) => {
         onError={() => setStatus("error")}
       />
       <div
+        data-testid="toggle-favorite"
         className={clsx(styles.actionContainer, "group")}
         onClick={toggleFav}
       >
         {isFav ? (
-          <FaHeart className={clsx(styles.actionIconActive)} />
+          <FaHeart
+            className={clsx(styles.actionIconActive)}
+            data-testid="icon-favorite-on"
+          />
         ) : (
           <FaRegHeart
+            data-testid="icon-favorite-off"
             className={clsx(styles.actionIcon, "group-hover:text-red-500")}
           />
         )}

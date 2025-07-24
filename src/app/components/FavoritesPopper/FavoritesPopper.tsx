@@ -9,14 +9,14 @@ const FavoritesPopper = () => {
   const favorites = useAppSelector(selectorFavorites);
 
   return (
-    <div className={styles.popperContainer}>
+    <div className={styles.popperContainer} data-testid="favorites-popper">
       {favorites.length == 0 && (
         <span className={styles.emptyText}>Empty list</span>
       )}
       {favorites.map((c) => (
         <div key={c.id} className={styles.favoriteItem}>
           <span>{c.name}</span>
-          <button onClick={() => dispatch(removeFavorite(c.id))}>
+          <button onClick={() => dispatch(removeFavorite(c.id))} data-testid="favorites-popper-remove">
             <FaTrash />
           </button>
         </div>
