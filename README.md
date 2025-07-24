@@ -1,20 +1,39 @@
 ## Getting Started
 
-Primero, instalar deprendencias:
+#### Primero, instalar deprendencias:
 
 ```bash
 yarn install
 ```
 
-Segundo, ambiente local:
+#### Segundo, ambiente local:
+
+Levantar api
 
 ```bash
-npm run dev
-# or
-yarn dev
+yarn mock:api
 ```
 
-Mejoras que haria si tuviese mas tiempo:
+Ejecutar frontend
+
+```bash
+yarn dev
+```
+## Testing
+
+```bash
+yarn test
+```
+
+## Notas del desarrollador
+
+### Lo que mas me gusto del desarrollo
+
+es crear la logica de mapear items del api, me parece una parte muuy satisfactoria de ver en desarrollo, tanto la parte de diseñar el acomodo de los items para que se vean bien en diferentes resoluciones
+
+
+### Mejoras que haria si tuviese mas tiempo:
+
 - Cancelación de peticiones innecesarias, cuando el input de filtro cambia constantemente puede que a veces una petición de busqueda quede obsoleta si no se completo antes del siguiente cambio
 - Redux persistencia (localstorage)
 - Loading screen user friendly 
@@ -23,6 +42,7 @@ Mejoras que haria si tuviese mas tiempo:
 - Para agregar el soporte de SSR y evitar que la primera carga de la pantalla venga vacia, se pueden obtener las cabeceras del browser para saber si iniciar la carga desde el layout de mobile o de desktop antes de que llegue al cliente a obtener las dimensiones del dispositivo
 
 
-Bug que me tope y como lo solucione:
+### Bug que me tope y como lo solucione:
+
 1. Imagenes del api daban error 502, eso hacia que el diseño se quebrara asi que agregue un fallback de las imagenes y un cargando
 2. Next.js estaba detectando un fallo de hidratación debido al cambio de layout entre desktop y mobile, tuve que usar dynamic ssr:false
