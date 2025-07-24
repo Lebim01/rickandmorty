@@ -8,12 +8,15 @@ import {
   searchFailed,
   searchRequested,
 } from "./characters.slice";
-import { ApiResponse, Character, getCharacters, Info } from "rickmortyapi";
+import { Character } from "rickmortyapi";
+import { fetchCharacters } from "@/app/api/characters.api";
+
+type ApiResponse = { characters: Character[]; total: number };
 
 function* handleGetAllCharacters() {
   try {
-    const data: ApiResponse<Info<Character[]>> = yield call(getCharacters);
-    const list: Character[] = data.data.results ?? [];
+    const data: ApiResponse = yield call(fetchCharacters);
+    const list: Character[] = data.characters ?? [];
     yield put(getAllSucceeded(list));
   } catch (err: any) {
     yield put(getAllFailed(err?.message ?? "Error desconocido"));
@@ -30,11 +33,11 @@ function* handleSearchCharacters(action: { payload: string }) {
   }
 
   try {
-    const res: ApiResponse<Info<Character[]>> = yield call(getCharacters, {
-      name: query,
+    const res: ApiResponse = yield call(fetchCharacters, {
+      search: query,
     });
 
-    const list: Character[] = res.data.results ?? [];
+    const list: Character[] = res.characters ?? [];
     yield put(searchSucceeded(list));
   } catch (err: any) {
     yield put(searchFailed(err?.message ?? "Error desconocido"));
